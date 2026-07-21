@@ -48,18 +48,53 @@ Every form follows the same step sequence and the same filing last-mile; form-sp
 schema and the agent's documented research protocol. **Highly complex returns — business income
 with audit, for example — should still involve a qualified professional.**
 
-## How it works (the flow)
+## Filing your return — the end-to-end steps
 
-1. You drop a PAN's documents into `pans/<alias>/inputs/`.
-2. The agent presents an **upfront requirements checklist**, ingests and reconciles everything, and
-   **determines the correct ITR form** from your situation — keeping durable per-PAN state in
-   `pans/<alias>/state.json`.
-3. It computes the return, confirms the regime, and assembles a schema-valid JSON for that form.
-4. It hands you clear steps to pay any tax due and finalize the file through the official utility,
-   then upload and e-verify.
+Here is the whole process, start to finish. 🤖 = the agent does it for you; 👤 = your manual step.
+The agent drives the flow and keeps your manual steps to a minimum, but a few actions **must** be
+yours (paying tax, generating the final file, uploading, e-verifying).
 
-The full playbook — guardrails, per-PAN memory model, form-determination logic, step sequence (SOP),
-correction flow, and the hard-won filing gotchas — lives in
+1. **👤 Set up.** Install Claude Code, clone this repo, open it, and invoke `@itr-agent`
+   (see [Quickstart](#quickstart)).
+2. **🤖 Kickoff checklist.** The agent tells you exactly which documents to gather, and confirms up
+   front that you have a machine that can run the official Income-Tax offline utility (this matters
+   for the last step — see the note below).
+3. **👤 Gather & drop in your documents.** The agent creates the `pans/<alias>/inputs/` folder for
+   you; you just copy in the files: **Form 16, AIS, TIS, the portal pre-filled JSON, broker
+   capital-gains/P&L statements, any foreign-broker reports, and last year's return**.
+4. **🤖 Determine the ITR form.** From your income sources the agent decides whether it's
+   **ITR-1, ITR-2, ITR-3, or ITR-4** and confirms it with you.
+5. **🤖 Compute every schedule & reconcile.** Salary, capital gains (STCG/LTCG, grandfathering),
+   other sources, foreign assets (Schedule FA), losses/carry-forward, etc. — each figure
+   **reconciled against your AIS/TIS**, with a mismatch report for anything that doesn't tie out.
+6. **🤖 Compare regimes & compute tax.** Old vs new regime, arriving at your **refund or amount
+   payable**.
+7. **👤 Review & approve.** The agent presents every schedule total and the bottom-line tax; you
+   confirm the numbers.
+8. **👤 Pay self-assessment tax, if any is payable** → **🤖 record it.** You pay via the portal's
+   *e-Pay Tax* (minor head *300 — Self-Assessment*); the agent then wires that challan into the
+   return so the balance goes to zero. (Salary income is usually covered by TDS, but interest,
+   dividends, and capital gains typically leave a small balance to pay here.)
+9. **🤖 Assemble & validate the JSON.** The agent produces a schema-valid ITR JSON — complete with
+   the itemized sub-arrays and your Aadhaar — and validates it against the official schema.
+10. **👤 Generate the final file through the official utility.** ⚠️ **You cannot upload the agent's
+    JSON to the portal directly** — the portal only accepts a file produced by the official
+    Income-Tax offline utility (it stamps an integrity hash the portal checks). So: open the utility,
+    **import** the agent's JSON (it fills in every schedule — no re-typing), run the utility's
+    validation, and click **Save / Generate JSON**. *That* output is your real return file.
+11. **👤 Upload** the utility-generated file on the e-filing portal
+    (e-File → Income Tax Returns → File Return → your AY → your form).
+12. **👤 e-Verify** (Aadhaar OTP / net-banking / EVC). **Filing is complete only after e-verification.**
+
+> **Why step 10 exists:** the portal rejects any hand-built or hand-edited JSON — it enforces a
+> software-provider ID and a content-integrity hash that only the official utility (or a registered
+> ERI) can produce. The agent gets you a correct, validated file; the utility turns it into an
+> *uploadable* one. Make sure you have a machine that can run it: **Windows**, an **Apple-Silicon
+> Mac**, or **MS Excel with macros** (the Excel utility). An **Intel Mac cannot** run the desktop
+> utility, and **LibreOffice will not** run the Excel one.
+
+The full playbook — guardrails, per-PAN memory model, form-determination logic, the detailed step
+sequence (SOP), correction flow, and the hard-won filing gotchas — lives in
 **[`itr-agent-guide.md`](./itr-agent-guide.md)**.
 
 ## Quickstart
