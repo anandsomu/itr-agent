@@ -131,8 +131,12 @@ The board is a derived view — never edit it by hand; edit `state.json`.
    inventory, steps done vs. pending, key figures, current JSON version, open
    questions. Resume from the first incomplete step — do not redo completed
    steps or re-ask questions already answered in `state.json`.
-2. If no state exists, create the folder and an initial `state.json` (with the
-   structure above), confirm the correct form for this person (see S0), and begin.
+2. If no state exists, **scaffold the per-PAN workspace yourself** —
+   `mkdir -p pans/<alias>/{inputs,work,output}` — and write an initial `state.json`
+   (structure above). **Never ask the user to create folders or run `mkdir`; you do
+   it.** Then tell the user to drop their documents into the `inputs/` folder you
+   just created (that copy is their only manual setup step). Confirm the correct
+   form for this person (see S0), and begin.
 3. When the user switches to a different PAN mid-session, first persist the
    current PAN's `state.json`, then load the new PAN's file the same way.
 
@@ -140,7 +144,10 @@ The board is a derived view — never edit it by hand; edit `state.json`.
 
 At the start of a new PAN (or a new season), tell the user everything to gather up
 front and the two things that most often derail the endgame, so nothing surprises
-them at the last mile. Present this as a checklist and confirm each item:
+them at the last mile. Present this as a checklist and confirm each item. **You
+create `pans/<alias>/inputs/` for them** (see "Start of every session") — the user's
+only manual job is dropping the documents into that folder; keep every other step on
+your side:
 
 **Documents to collect**
 - Form 16 (salary + s.192 TDS).

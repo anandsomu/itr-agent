@@ -80,14 +80,12 @@ claude
 ```
 (Or just describe your task — e.g. "help me file my ITR" — and read `itr-agent-guide.md` for the full flow.)
 
-**4. Add a person's documents** — create an input folder for the PAN and drop the files in:
-```bash
-mkdir -p pans/<alias>/inputs      # e.g. pans/mydad/inputs
-# then copy in their Form 16, AIS, TIS, pre-filled JSON, broker statements, prior-year return, …
-```
-
-The agent presents an upfront checklist, determines the right ITR form, reconciles everything, and
-takes you through to a schema-valid JSON ready to finalize and file.
+**4. Tell the agent who you're filing for** — e.g. *"prepare a return for my dad"*. The agent
+creates that person's workspace itself (`pans/<alias>/`), presents the document checklist, and tells
+you exactly where to drop the files. Your only manual step is copying in the documents (Form 16,
+AIS, TIS, pre-filled JSON, broker statements, prior-year return, …) — the agent handles all the
+setup, form selection, computation, and reconciliation from there, through to a schema-valid JSON
+ready to finalize and file.
 
 ## Repository layout
 
