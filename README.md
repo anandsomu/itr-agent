@@ -34,20 +34,6 @@ e-verifies on your behalf.** You review and submit everything.
   file through the official offline utility (which stamps the required integrity hash), upload, and
   e-verify.
 
-## Forms & scope
-
-| Form | For | Status |
-|---|---|---|
-| **ITR-2** | Individuals/HUF with capital gains, foreign assets, multiple house properties, income > ₹50L (no business) | ✅ Most deeply validated path |
-| **ITR-1 (Sahaj)** | Resident individuals ≤ ₹50L — salary, one house, other sources | Supported via the same SOP |
-| **ITR-3** | Individuals/HUF with business/professional income (incl. F&O/intraday) — superset of ITR-2 + business schedules | Supported via the research protocol |
-| **ITR-4 (Sugam)** | Presumptive business/profession (44AD/44ADA/44AE), ≤ ₹50L | Supported via the research protocol |
-
-Every form follows the same step sequence and the same filing last-mile; form-specific schedules
-(e.g. ITR-3's Business & Profession / P&L / Balance Sheet) are handled using that form's official
-schema and the agent's documented research protocol. **Highly complex returns — business income
-with audit, for example — should still involve a qualified professional.**
-
 ## Filing your return — the end-to-end steps
 
 Here is the whole process, start to finish. 🤖 = the agent does it for you; 👤 = your manual step.
