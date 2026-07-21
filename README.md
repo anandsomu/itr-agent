@@ -13,27 +13,6 @@ e-verifies on your behalf.** You review and submit everything.
 
 ---
 
-## What it does
-
-- **Picks the right form for you.** From your income sources it determines whether you should file
-  **ITR-1 (Sahaj), ITR-2, ITR-3, or ITR-4 (Sugam)** — and flags when business/F&O activity means
-  ITR-3, or when a case is beyond an individual return.
-- **Ingests your documents** — Form 16, AIS (Annual Information Statement), TIS (Taxpayer
-  Information Summary), the portal pre-filled JSON, broker capital-gains/P&L statements, and your
-  prior-year return.
-- **Reconciles every number** against AIS/TIS and flags mismatches (it treats AIS capital-gains cost
-  data as unreliable and uses your broker statement as the source of truth).
-- **Computes income and tax** across all heads — **Salary, House Property, Capital Gains (STCG/LTCG
-  under s.111A / s.112A, grandfathering), Business/Profession, and Other Sources** — and compares
-  the **old vs new regime**.
-- **Handles foreign assets** — builds **Schedule FA** for overseas holdings (e.g. US stocks via
-  INDmoney/Vested/IBKR), on the correct calendar-year basis, plus foreign dividends and FTC/Form 67.
-- **Assembles a schema-valid ITR JSON** and validates it against the official Income-Tax Department
-  schema for the chosen form with the bundled validator.
-- **Guides the filing "last-mile"** — pay self-assessment tax, add the challan, generate the final
-  file through the official offline utility (which stamps the required integrity hash), upload, and
-  e-verify.
-
 ## Filing your return — the end-to-end steps
 
 Here is the whole process, start to finish. 🤖 = the agent does it for you; 👤 = your manual step.
