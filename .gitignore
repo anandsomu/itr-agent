@@ -1,0 +1,27 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Taxpayer PII — NEVER committed. Every per-PAN folder and its documents stay
+# local to this machine. Only the shared tools/docs at pans/ root are tracked.
+# ─────────────────────────────────────────────────────────────────────────────
+# Ignore EVERYTHING under pans/ (all per-PAN folders, state.json, the rendered board),
+# then re-include only the two shared, PII-free files.
+/pans/*
+!/pans/dashboard.py
+!/pans/README.md
+
+# Stray return artifacts (belt-and-suspenders)
+*.pdf
+itr*_v*.json
+*Prefill*.json
+*_upload_*.json
+*AIS*.pdf
+*TIS*.pdf
+
+# AY-specific schema / offline utility — public downloads that change yearly (see schema/README.md)
+schema/*.json
+schema/*.zip
+schema/*.xlsm
+
+# Local Claude Code settings & OS junk
+.claude/settings.local.json
+.claude/settings.json
+.DS_Store
