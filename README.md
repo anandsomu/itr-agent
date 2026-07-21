@@ -64,16 +64,30 @@ correction flow, and the hard-won filing gotchas — lives in
 
 ## Quickstart
 
+**1. Install Claude Code** — <https://claude.com/claude-code>
+
+**2. Clone this repo and open it in Claude Code:**
 ```bash
-# 1. Install Claude Code:  https://claude.com/claude-code
-# 2. Clone and open this repo
-git clone <your-repo-url> itr-agent && cd itr-agent
-# 3. Launch Claude Code in the folder, then:
-#    - read itr-agent-guide.md (or just start), and invoke  @itr-agent
-#    - create pans/<alias>/inputs/ and add that person's documents
+git clone git@github.com:anandsomu/itr-agent.git
+# (no SSH key? use HTTPS: git clone https://github.com/anandsomu/itr-agent.git)
+cd itr-agent
+claude
 ```
 
-The agent takes it from there.
+**3. Start the agent** — in Claude Code, invoke the agent and let it guide you:
+```
+@itr-agent
+```
+(Or just describe your task — e.g. "help me file my ITR" — and read `itr-agent-guide.md` for the full flow.)
+
+**4. Add a person's documents** — create an input folder for the PAN and drop the files in:
+```bash
+mkdir -p pans/<alias>/inputs      # e.g. pans/mydad/inputs
+# then copy in their Form 16, AIS, TIS, pre-filled JSON, broker statements, prior-year return, …
+```
+
+The agent presents an upfront checklist, determines the right ITR form, reconciles everything, and
+takes you through to a schema-valid JSON ready to finalize and file.
 
 ## Repository layout
 
